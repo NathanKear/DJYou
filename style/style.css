@@ -1,0 +1,50 @@
+/* FOR DEBUGGING */
+/*.container {
+    border: 2px solid green;
+}
+
+.row {
+    border: 1px solid orange;
+}
+
+div [class*="col-"] {
+    border: 1px dashed red;
+}*/
+
+.title {
+    min-width: 150px;
+    margin: 60px 0px 80px 0px;
+}
+
+.form-group {
+    width: 300px;
+}
+
+.btn {
+    max-width: 300px;
+    min-width: 150px;
+}
+
+.row {
+    margin-bottom: 40px;
+}
+
+@media (max-width: 575.98px) {
+    .btn, .form-group {
+        max-width: 100%;
+        min-width: 150px;
+        width: 300px;
+    }
+}
+
+@media (max-height: 500px) {
+    .title {
+        margin: 30px 0px 40px 0px;
+    }
+}
+
+@media (max-height: 400px) {
+    .title {
+        margin: 0px 0px 0px 0px;
+    }
+}
