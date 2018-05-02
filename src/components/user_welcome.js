@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'; 
+import { createEvent } from '../actions'
 
 class UserWelcome extends Component {
     renderEventCodeField(field) {
@@ -25,6 +26,13 @@ class UserWelcome extends Component {
 
     onSubmit(values) {
         console.log("Submit", values);
+    }
+
+    onCreateNewEvent() {
+        console.log("New Event");
+        this.props.createEvent(({code}) => {
+            this.props.history.push(`/${code}/view`);
+        });
     }
 
     render() {
@@ -54,7 +62,10 @@ class UserWelcome extends Component {
 
                 <div className="row justify-content-center">
                     <div className="col col-sm text-center">
-                        <Link to="/session/create" className="btn btn-primary">New Event</Link>
+                        <button
+                            className="btn btn-primary"
+                            onClick={this.onCreateNewEvent.bind(this)}
+                        >New Event</button>
                     </div>
                 </div>
             </div>
@@ -76,5 +87,12 @@ export default reduxForm({
     validate,
     form: 'JoinSessionForm'
 })(
-    connect(null, null)(UserWelcome)
+    connect(null, { createEvent } )(UserWelcome)
 );
+
+// export default reduxForm({
+//     validate,
+//     form: 'CreateSessionForm'
+// })(
+//     connect(null, { createEvent })(SessionCreate)
+// );

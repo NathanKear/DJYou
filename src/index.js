@@ -17,7 +17,6 @@ ReactDOM.render(
     <BrowserRouter>
       <div>
         <Switch>
-          <Route path="/session/create" component={SessionCreate}/>
           <Route path="/:sessionId/view" component={VideoView}/>
           <Route path="/:sessionId/add" component={VideoAdd}/>
           <Route path="/" component={UserWelcome}/>

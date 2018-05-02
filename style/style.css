@@ -29,6 +29,21 @@ div [class*="col-"] {
     margin-bottom: 40px;
 }
 
+.text-help {
+    position: absolute;
+}
+
+/*
+Connection String
+Server=localhost\SQLEXPRESS;Database=master;Trusted_Connection=True;
+
+SQL Server install log
+C:\Program Files\Microsoft SQL Server\140\Setup Bootstrap\Log\20180328_114909
+
+Instance Name
+SQLEXPRESS
+*/
+
 @media (max-width: 575.98px) {
     .btn, .form-group {
         max-width: 100%;
