@@ -3,7 +3,9 @@ Checkout this repo, install dependencies, then start the gulp process with the f
 
 ```
 > git clone https://github.com/NathanKear/DJYou.git
-> cd ReduxSimpleStarter
+> cd DJYou
 > npm install
 > npm start
+
+You will also need to clone and start the DJYouAPI.
 ```
