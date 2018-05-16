@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { CREATE_EVENT } from '../actions';
+import { CREATE_EVENT, JOIN_EVENT } from '../actions';
 
 export default function(state = {}, action) {
 
@@ -7,7 +7,8 @@ export default function(state = {}, action) {
 
     switch (action.type) {
         case CREATE_EVENT:
-            return { ...state, event: action.payload };
+        case JOIN_EVENT:
+            return action.payload.data;
         default:
             return state;
     }

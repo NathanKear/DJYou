@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, SubmissionError } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'; 
-import { createEvent } from '../actions'
+import { createEvent, joinEvent } from '../actions'
 
 class UserWelcome extends Component {
     renderEventCodeField(field) {
-        console.log("renderEventCodeField", field);
+        //console.log("renderEventCodeField", field);
         const { touched, error } = field.meta;
         const className = `mx-auto form-group ${ touched && error ? 'has-danger' : '' }`;
         return (
@@ -24,8 +24,22 @@ class UserWelcome extends Component {
         )
     }
 
-    onSubmit(values) {
-        console.log("Submit", values);
+    onSubmit({sessionCode}) {
+        console.log("Submit", sessionCode);
+
+        return new Promise((resolve, reject) => {
+
+            this.props.joinEvent(sessionCode, ({code}) => {
+                this.props.history.push(`/${code}/view`);
+                resolve();
+            }, (error) => {
+                reject();
+            });
+        }).catch(() => {
+            throw new SubmissionError({
+                sessionCode: 'Fail'
+            });
+        });
     }
 
     onCreateNewEvent() {
@@ -87,12 +101,5 @@ export default reduxForm({
     validate,
     form: 'JoinSessionForm'
 })(
-    connect(null, { createEvent } )(UserWelcome)
+    connect(null, { createEvent, joinEvent })(UserWelcome)
 );
-
-// export default reduxForm({
-//     validate,
-//     form: 'CreateSessionForm'
-// })(
-//     connect(null, { createEvent })(SessionCreate)
-// );
